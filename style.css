@@ -92,6 +92,10 @@ label { font-weight: 600; margin-top: 20px; display: block; }
 
 input[type="number"], select { 
     flex-grow: 1;
+    width: 100%; /* Neemt de maximale beschikbare ruimte in */
+    min-width: 0; /* Voorkomt dat mobiele browsers het veld te breed maken */
+    box-sizing: border-box; /* Zorgt dat de padding (12px) de knop niet stiekem groter maakt */
+    
     padding: 12px; 
     border-radius: 10px;
     border: 1px solid var(--rand-kleur);

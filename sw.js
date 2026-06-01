@@ -1,5 +1,4 @@
-// We maken er 'v2' van, zodat de app weet dat er bestanden zijn bijgewerkt!
-const CACHE_NAME = 'kogeldruk-v2'; 
+const CACHE_NAME = 'kogeldruk-v3'; 
 
 // Hier staan nu ook je twee iconen veilig in de lijst
 const bestandenOmTeCachen = [

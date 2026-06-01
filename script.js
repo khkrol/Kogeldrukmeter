@@ -1,7 +1,7 @@
 // Functie voor de plus en min knoppen
 function pasWaardeAan(waarde) {
     let invoerVeld = document.getElementById("neuswieldruk");
-    let huidigGeval = parseFloat(invoerVeld.value);
+    let huidigGeval = parseFloat(invoerVeld.value.replace(',', '.'));
     
     // Als het veld leeg is, starten we op 0
     if (isNaN(huidigGeval)) huidigGeval = 0;
@@ -21,7 +21,8 @@ let vorigeStatusWasGevaar = false;
 
 function berekenKogeldruk() {
     let invoerVeld = document.getElementById("neuswieldruk").value;
-    let N = parseFloat(invoerVeld);
+    let veiligeInvoer = invoerVeld.replace(',', '.');
+    let N = parseFloat(veiligeInvoer);
     let belading = document.getElementById("belading").value;
     let resultaatBox = document.getElementById("resultaatBox");
 
@@ -131,6 +132,11 @@ function slaMetingOp() {
     // Voeg de nieuwe meting vooraan toe aan de lijst
     historie.unshift(nieuweMeting);
     
+    // NIEUW: Zorg dat de lijst maximaal 50 items lang is
+    if (historie.length > 50) {
+    historie.pop(); // Gooit de alleroudste meting onderaan de lijst weg
+}
+
     // Sla het weer op in LocalStorage
     localStorage.setItem("kogeldrukHistorie", JSON.stringify(historie));
 
