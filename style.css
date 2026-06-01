@@ -1,0 +1,248 @@
+/* Kleurvariabelen voor de lichte modus (standaard) */
+:root {
+    --bg-kleur: #f0f2f5;
+    --container-bg: #ffffff;
+    --tekst-kleur: #333333;
+    --tekst-licht: #666666;
+    --rand-kleur: #cccccc;
+    --meter-bg: #e0e0e0;
+    --succes-kleur: #5cb85c;
+    --waarschuwing-kleur: #f0ad4e;
+    --gevaar-kleur: #d9534f;
+    --knop-bg: #007BFF; /* Dit is de blauwe kleur van je icoon */
+    --knop-tekst: #ffffff;
+}
+
+/* Automatische donkere modus! */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-kleur: #18191a;
+        --container-bg: #242526;
+        --tekst-kleur: #e4e6eb;
+        --tekst-licht: #b0b3b8;
+        --rand-kleur: #3a3b3c;
+        --meter-bg: #3a3b3c;
+    }
+}
+
+body { 
+    font-family: 'Poppins', Arial, sans-serif; 
+    padding: 20px; 
+    margin: 0; 
+    background-color: var(--bg-kleur);
+    color: var(--tekst-kleur);
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--container-bg);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden; /* Zorgt dat de header mooi binnen de ronde hoeken blijft */
+}
+
+/* Nieuwe styling voor de header bovenaan de app */
+.header-sectie {
+    background-color: var(--knop-bg);
+    color: var(--knop-tekst);
+    margin: -25px -25px 20px -25px;
+    padding: 25px;
+    text-align: center;
+}
+
+.header-sectie h2 { margin: 0 0 5px 0; }
+
+.header-sectie p.ondertitel { 
+    margin: 0; 
+    color: rgba(255, 255, 255, 0.8); /* Licht transparant wit voor goed contrast */
+    font-size: 14px; 
+}
+
+label { font-weight: 600; margin-top: 20px; display: block; }
+
+/* Styling voor de + en - knoppen en het invoerveld */
+.input-groep {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0 15px 0;
+}
+
+.aanpas-knop {
+    background-color: var(--knop-bg);
+    color: var(--knop-tekst);
+    border: none;
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.aanpas-knop:active { transform: scale(0.95); }
+
+input[type="number"], select { 
+    flex-grow: 1;
+    padding: 12px; 
+    border-radius: 10px;
+    border: 1px solid var(--rand-kleur);
+    background-color: var(--container-bg);
+    color: var(--tekst-kleur);
+    font-size: 18px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Verberg de standaard pijltjes in het nummer-veld */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; margin: 0;
+}
+
+#resultaatBox {
+    background-color: var(--bg-kleur);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 25px;
+    max-height: 1000px; /* Helpt bij soepele transities in plaats van display: none */
+    opacity: 1;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#resultaatBox.verborgen {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none; /* Voorkomt dat je op onzichtbare knoppen klikt */
+    position: absolute;
+    visibility: hidden;
+}
+
+/* Halfronde Meter (Gauge) */
+.gauge-container {
+    width: 200px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto 20px auto;
+}
+
+.gauge-achtergrond {
+    width: 200px;
+    height: 100px;
+    background-color: var(--meter-bg);
+    border-radius: 100px 100px 0 0;
+    position: absolute;
+    top: 0; left: 0;
+}
+
+.gauge-vulling {
+    width: 200px;
+    height: 100px;
+    background-color: var(--succes-kleur);
+    border-radius: 0 0 100px 100px;
+    position: absolute;
+    top: 100%; left: 0;
+    transform-origin: top center;
+    transform: rotate(0deg);
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.5s ease;
+}
+
+.gauge-cover {
+    width: 140px;
+    height: 70px;
+    background-color: var(--bg-kleur);
+    border-radius: 70px 70px 0 0;
+    position: absolute;
+    bottom: 0; left: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.advies { font-size: 15px; line-height: 1.6; text-align: center; }
+.waarschuwing { color: var(--gevaar-kleur); font-weight: 600; }
+.succes { color: var(--succes-kleur); font-weight: 600; }
+
+/* Styling voor de nieuwe knoppen en logboek */
+.actie-knop {
+    background-color: var(--knop-bg);
+    color: var(--knop-tekst);
+    border: none;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.historie-container {
+    margin-top: 30px;
+    border-top: 2px dashed var(--rand-kleur);
+    padding-top: 20px;
+}
+
+.historie-container h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.historie-lijst {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.historie-item {
+    background-color: var(--bg-kleur);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.historie-meta {
+    color: var(--tekst-licht);
+    font-size: 12px;
+}
+
+.lege-lijst {
+    color: var(--tekst-licht);
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+}
+
+.wis-knop {
+    background: none;
+    border: none;
+    color: var(--gevaar-kleur);
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: underline;
+    padding: 5px;
+    display: block;
+    margin: 10px auto 0 auto;
+    font-family: 'Poppins', sans-serif;
+}

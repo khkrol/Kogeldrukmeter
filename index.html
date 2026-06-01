@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kogeldrukmeter - Wilk 490 UE</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#007BFF">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="header-sectie">
+            <h2>Kogeldrukmeter</h2>
+            <p class="ondertitel">Wilk 490 UE | Auto max: 75-100 kg</p>
+        </div>
+
+        <label for="neuswieldruk">Afgelezen neuswieldruk (kg):</label>
+        
+        <div class="input-groep">
+            <button id="knopMin" class="aanpas-knop">-</button>
+            <input type="number" id="neuswieldruk" placeholder="Bijv. 105" min="0">
+            <button id="knopPlus" class="aanpas-knop">+</button>
+        </div>
+
+        <label for="belading">Gewicht / Belading Caravan:</label>
+        <select id="belading">
+            <option value="normaal">Normaal beladen (~1400 - 1550 kg)</option>
+            <option value="licht">Licht beladen (tot ~1400 kg)</option>
+            <option value="zwaar">Zwaar / Overbeladen (~1550 - 1700 kg)</option>
+        </select>
+
+        <div id="resultaatBox" class="verborgen">
+            
+            <div class="gauge-container">
+                <div class="gauge-achtergrond"></div>
+                <div class="gauge-vulling" id="gaugeVulling"></div>
+                <div class="gauge-cover">
+                    <span id="uitvoerGetal">0</span> kg
+                </div>
+            </div>
+
+            <div class="advies" id="adviesTekst"></div>
+            
+            <button id="knopOpslaan" class="actie-knop">Sla meting op</button>
+        </div>
+
+        <div class="historie-container">
+            <h3>Logboek</h3>
+            <ul id="historieLijst" class="historie-lijst">
+                <li class="lege-lijst">Nog geen metingen opgeslagen.</li>
+            </ul>
+            <button id="knopWissen" class="wis-knop">Wis historie</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
